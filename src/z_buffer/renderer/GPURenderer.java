@@ -18,4 +18,6 @@ public interface GPURenderer {
 
     void setProjection(Mat4 projection);
 
+    void wireModel(Boolean wireModelSelected);
+
 }
