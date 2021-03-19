@@ -21,11 +21,6 @@ public class DepthBuffer implements Raster<Double> {
 
     @Override
     public void clear() {
-//        for (double[] d : data) {
-//            for (int i = 0; i < d.length; i++) {
-//                d[i] = clearValue;
-//            }
-//        }
         for (double[] d : data) {
             Arrays.fill(d, clearValue);
         }
