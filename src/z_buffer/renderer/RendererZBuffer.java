@@ -19,7 +19,7 @@ public class RendererZBuffer implements GPURenderer {
     private final DepthBuffer depthBuffer;
 
     private Mat4 model, view, projection;
-    boolean wireModelSelected;
+    private boolean wireModelSelected;
 
     public RendererZBuffer(Raster<Integer> raster) {
         this.raster = raster;
@@ -313,26 +313,23 @@ public class RendererZBuffer implements GPURenderer {
 
     @Override
     public void clear() {
-        // TODO
+        // TODO - to tady zůstat nemělo
         raster.clear();
         depthBuffer.clear();
     }
 
     @Override
     public void setModel(Mat4 model) {
-        // TODO
         this.model = model;
     }
 
     @Override
     public void setView(Mat4 view) {
-        // TODO
         this.view = view;
     }
 
     @Override
     public void setProjection(Mat4 projection) {
-        // TODO
         this.projection = projection;
     }
 

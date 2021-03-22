@@ -76,8 +76,8 @@ public class Controller3D {
         scene.addElement(arrow);
 
         axis.setModel(new Mat4Identity());
-        triangle.setModel(new Mat4Transl(1,.25,0));
-        crystal.setModel(new Mat4Transl(.25,1,0));
+        triangle.setModel(new Mat4Transl(1, .25, 0));
+        crystal.setModel(new Mat4Transl(.25, 1, 0));
 
         temModel = scene.getElements().get(selectedElement).getModel();
 
@@ -87,7 +87,7 @@ public class Controller3D {
 
     private void initMatrices() {
         model = new Mat4Identity();
-        camera = new Camera().addAzimuth(-2.5).addZenith(-0.15).withPosition(new Vec3D(5,5,2));
+        camera = new Camera().addAzimuth(-2.5).addZenith(-0.15).withPosition(new Vec3D(5, 5, 2));
         isPerspective(false);
     }
 
@@ -103,8 +103,8 @@ public class Controller3D {
         panel.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                camera = camera.addAzimuth((Math.PI/2*(e.getX()-oldX))/width);
-                camera = camera.addZenith((Math.PI/2*(e.getY()-oldY))/height);
+                camera = camera.addAzimuth((Math.PI / 2 * (e.getX() - oldX)) / width);
+                camera = camera.addZenith((Math.PI / 2 * (e.getY() - oldY)) / height);
 
                 oldX = e.getX();
                 oldY = e.getY();
@@ -171,21 +171,21 @@ public class Controller3D {
                     case KeyEvent.VK_END -> scale -= 0.1;
                 }
 
-                if(e.isShiftDown()){
+                if (e.isShiftDown()) {
                     shiftIsPressed = true;
                     display();
                 }
                 shiftIsPressed = false;
 
                 display();
-                triangle.setModel(new Mat4Transl(1,0.25,0));        /*PO TRANSFORMACI SE PREMISTI NA PUVODNI MISTO*/
-                crystal.setModel(new Mat4Transl(0.25,1,0));
+                triangle.setModel(new Mat4Transl(1, 0.25, 0));        /*PO TRANSFORMACI SE PREMISTI NA PUVODNI MISTO*/
+                crystal.setModel(new Mat4Transl(0.25, 1, 0));
             }
         });
     }
 
     private void isPerspective(boolean perspective) {
-        if(perspective)
+        if (perspective)
             projection = new Mat4PerspRH(
                     Math.PI / 3,
                     height / width,
@@ -193,24 +193,24 @@ public class Controller3D {
                     50
             );
         else
-            projection = new Mat4OrthoRH((width/height)*8,(height/width)*8,0.5,100);
+            projection = new Mat4OrthoRH((width / height) * 8, (height / width) * 8, 0.5, 100);
     }
 
     private synchronized void display() {
         renderer.clear();
 
-        if(shiftIsPressed) {   //ALL ELEMENTS ARE SELECTED
-            for (int i = 1; i < scene.getElements().size();i++) {
+        if (shiftIsPressed) {   //ALL ELEMENTS ARE SELECTED
+            for (int i = 1; i < scene.getElements().size(); i++) {
                 Mat4 model2 = scene.getElements().get(i).getModel();
 
-                scene.getElements().get(i).setModel(new Mat4RotXYZ(xRot*Math.PI/3, yRot*Math.PI/4, zRot*Math.PI/5)
-                        .mul(new Mat4Transl(2,2,translZ))
+                scene.getElements().get(i).setModel(new Mat4RotXYZ(xRot * Math.PI / 3, yRot * Math.PI / 4, zRot * Math.PI / 5)
+                        .mul(new Mat4Transl(2, 2, translZ))
                         .mul(new Mat4Scale(scale, scale, scale)));
                 scene.getElements().get(i).setModel(model2);
             }
-        } else if(selectedElement != 0) {    //ONE ELEMENT IS SELECTED
-            scene.getElements().get(selectedElement).setModel(new Mat4RotXYZ(xRot*Math.PI/3, yRot*Math.PI/4, zRot*Math.PI/5)
-                    .mul(new Mat4Transl(2,2,translZ))
+        } else if (selectedElement != 0) {    //ONE ELEMENT IS SELECTED
+            scene.getElements().get(selectedElement).setModel(new Mat4RotXYZ(xRot * Math.PI / 3, yRot * Math.PI / 4, zRot * Math.PI / 5)
+                    .mul(new Mat4Transl(2, 2, translZ))
                     .mul(new Mat4Scale(scale, scale, scale)));
         }
 

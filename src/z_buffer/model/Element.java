@@ -13,6 +13,7 @@ public class Element {
     private final int count;
     private Mat4 model = new Mat4Identity();
 
+    // mít to static je hooodně ošklivé
     protected static final List<Vertex> vb = new ArrayList<>(); // vertex buffer
     protected static final List<Integer> ib = new ArrayList<>(); // index buffer
 

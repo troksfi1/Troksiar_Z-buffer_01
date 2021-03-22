@@ -2,6 +2,7 @@ package z_buffer.rasterize;
 
 import java.awt.*;
 
+// třída není nikde použita, měla by být smazána
 @Deprecated
 public class LineRasterizerGraphics {
 
